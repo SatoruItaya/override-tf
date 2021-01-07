@@ -1,25 +1,26 @@
 package main
 
 import (
-    "os"
-    "log"
+	"log"
+	"os"
 )
 
 func main() {
 
-    f, err := os.Create("override.tf")
-    if err != nil {
-        log.Fatal(err)
-    }
+	f, err := os.Create("override.tf")
 
-    defer f.Close()
+	if err != nil {
+		log.Fatal(err)
+	}
 
-    content_override_tf :=`
+	defer f.Close()
+
+	content_override_tf := `
 terraform {
     backend "local" {
     }
 }
 `
 
-    f.WriteString(content_override_tf)
+	f.WriteString(content_override_tf)
 }
